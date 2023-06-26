@@ -1,0 +1,26 @@
+name: Apply namespace specs
+on:
+  push:
+    branches:
+      - main
+    # paths:
+    #   - 'namespaces/*/spec.json'
+
+jobs:
+  deploy-and-test-cp:
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          sparse-checkout: |
+            namespaces
+      - uses: actions/setup-go@v4
+        with:
+          go-version: '^1.18'
+      - run: go install github.com/temporalio/tcld/cmd/tcld@13814d253e0da90714f3f0426b11a2c6e4eb66d4
+      - run: |
+          for specFilePath in $(find namespaces -name spec.json); do \
+            namespaceName=$(basename $(dirname "$specFilePath")) \
+            echo updating $namespaceName namespace with specification in file $specFilePath \
+          done
+
+          
