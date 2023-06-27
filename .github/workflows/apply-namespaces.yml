@@ -23,7 +23,7 @@ jobs:
           for specFilePath in $(find namespaces -name spec.json); do
             namespaceName=$(basename $(dirname "$specFilePath"))
             echo updating $namespaceName namespace with specification in file $specFilePath
-            tcld 
+            tcld namespace apply-specification --namespace $namespaceName --spec-file $specFilePath --wait
           done
 
           
