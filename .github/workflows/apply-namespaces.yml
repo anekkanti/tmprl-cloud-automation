@@ -19,6 +19,8 @@ jobs:
           go-version: '^1.18'
       - run: go install github.com/temporalio/tcld/cmd/tcld@5213f7e34f3fb67c7588954651a5267fdcf67ef0
       - shell: bash
+        env:
+          - TEMPORAL_CLOUD_API_KEY: ${{ secrets.TEMPORAL_CLOUD_API_KEY }}
         run: |
           for specFilePath in $(find namespaces -name spec.json); do
             namespaceName=$(basename $(dirname "$specFilePath"))
