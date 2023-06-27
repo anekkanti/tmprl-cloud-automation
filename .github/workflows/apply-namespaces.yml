@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - 'namespaces/*/spec.json'
+    paths:
+      - 'namespaces/*/spec.json'
 
 jobs:
   apply-namespaces:
@@ -25,7 +25,7 @@ jobs:
           for specFilePath in $(find namespaces -name spec.json); do
             namespaceName=$(basename $(dirname "$specFilePath"))
             echo updating $namespaceName namespace with specification in file $specFilePath
-            tcld namespace apply-specification --namespace $namespaceName --spec-file $specFilePath --wait
+            tcld namespace apply-specification --namespace $namespaceName --spec-file $specFilePath --wait --auto-confirm
           done
 
           
