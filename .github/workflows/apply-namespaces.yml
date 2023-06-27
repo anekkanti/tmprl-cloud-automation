@@ -21,11 +21,12 @@ jobs:
       - shell: bash
         env:
           TEMPORAL_CLOUD_API_KEY: ${{ secrets.TEMPORAL_CLOUD_API_KEY }}
+          AUTO_CONFIRM: true
         run: |
           for specFilePath in $(find namespaces -name spec.json); do
             namespaceName=$(basename $(dirname "$specFilePath"))
             echo updating $namespaceName namespace with specification in file $specFilePath
-            tcld namespace apply-specification --namespace $namespaceName --spec-file $specFilePath --wait --auto-confirm
+            tcld namespace apply-specification --namespace $namespaceName --spec-file $specFilePath --wait
           done
 
           
