@@ -4,5 +4,8 @@
     "id": "a2dd6-read",
     "role": "Read"
   },
-  "namespacePermissions": []
+  "namespacePermissions": [
+	  "namespace": "abhinav-test3.a2dd6",
+	  "permission": "Read"
+  ]
 }
