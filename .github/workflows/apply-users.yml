@@ -1,19 +1,20 @@
-name: Apply namespace specs
+name: Apply user specs
+
 on:
   push:
     branches:
       - main
     paths:
-      - 'namespaces/*/spec.json'
+      - 'users/*/spec.json'
 
 jobs:
-  apply-namespaces:
+  apply-users:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           sparse-checkout: |
-            namespaces
+            users
       - uses: actions/setup-go@v4
         with:
           go-version: '^1.18'
@@ -23,10 +24,10 @@ jobs:
           TEMPORAL_CLOUD_API_KEY: ${{ secrets.TEMPORAL_CLOUD_API_KEY }}
           AUTO_CONFIRM: true
         run: |
-          for specFilePath in $(find namespaces -name spec.json); do
-            namespaceName=$(basename $(dirname "$specFilePath"))
-            echo updating $namespaceName namespace with specification in file $specFilePath
-            tcld namespace apply --namespace $namespaceName --spec-file $specFilePath --wait
+          for specFilePath in $(find users -name spec.json); do
+            userEmail=$(basename $(dirname "$specFilePath"))
+            echo updating user with email=$userEmail with specification in file $specFilePath
+            tcld user apply --user-email $userEmail --spec-file $specFilePath --wait
           done
 
-          
+    
