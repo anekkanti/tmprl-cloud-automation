@@ -5,7 +5,9 @@
     "role": "Read"
   },
   "namespacePermissions": [
-	  "namespace": "abhinav-test3.a2dd6",
-	  "permission": "Read"
+	  {
+		  "namespace": "abhinav-test3.a2dd6",
+		  "permission": "Read"
+	  }
   ]
 }
