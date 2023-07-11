@@ -26,8 +26,9 @@ jobs:
         run: |
           for specFilePath in $(find users -name spec.json); do
             userEmail=$(jq -r '.email' $specFilePath)
-            echo updating user with email=$userEmail with specification in file $specFilePath
+            echo "::group:: User Email:$userEmail Specfile:$specFilePath"
             tcld user apply --user-email $userEmail --spec-file $specFilePath --wait
+            echo "::endgroup::"
           done
 
     
