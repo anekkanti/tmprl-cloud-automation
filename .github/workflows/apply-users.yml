@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: '^1.18'
-      - run: go install github.com/temporalio/tcld/cmd/tcld@fe346a596d9e364496bd923567d73b3ec188e66f
+      - run: go install github.com/temporalio/tcld/cmd/tcld@ffa81f5b74ea8c1d962ce9169f10bfb0f6d34f48
       - shell: bash
         env:
           TEMPORAL_CLOUD_API_KEY: ${{ secrets.TEMPORAL_CLOUD_API_KEY }}
