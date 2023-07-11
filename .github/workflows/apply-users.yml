@@ -25,7 +25,7 @@ jobs:
           AUTO_CONFIRM: true
         run: |
           for specFilePath in $(find users -name spec.json); do
-            userEmail=$(basename $(dirname "$specFilePath"))
+            userEmail=$(jq -r '.email' $specFilePath")
             echo updating user with email=$userEmail with specification in file $specFilePath
             tcld user apply --user-email $userEmail --spec-file $specFilePath --wait
           done
