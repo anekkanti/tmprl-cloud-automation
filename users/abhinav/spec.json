@@ -1,7 +1,6 @@
 {
   "email": "abhinav.nekkanti@gmail.com",
   "accountRole": {
-    "id": "a2dd6-read",
     "role": "Read"
   },
   "namespacePermissions": [
