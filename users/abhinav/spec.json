@@ -6,7 +6,7 @@
   "namespacePermissions": [
 	  {
 		  "namespace": "abhinav-test3.a2dd6",
-		  "permission": "Write"
+		  "permission": "Admin"
 	  }
   ]
 }
